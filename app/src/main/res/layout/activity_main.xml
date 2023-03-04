@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="quote"
+            name="mainViewModel"
             type="com.example.databindinglivedata.MainViewModel" />
 
     </data>
@@ -21,7 +21,7 @@
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
+            android:text="@{mainViewModel.quoteMutableLiveData}"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,6 +31,7 @@
         <Button
             android:id="@+id/update"
             android:text="Update"
+            android:onClick= "@{() -> mainViewModel.updateQuote()}"
             android:layout_width="wrap_content"
             android:layout_height="50dp" />
 

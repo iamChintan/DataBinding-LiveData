@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.databindinglivedata.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -13,14 +14,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.text.text = "Hello There"
+        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        mainViewModel.quoteLiveData.observe(this, Observer {
-            binding.text.text = it
-        })
-
-        binding.update.setOnClickListener{
-            mainViewModel.updateQuote()
-        }
+        binding.mainViewModel = mainViewModel
+        binding.lifecycleOwner = this
     }
 }
